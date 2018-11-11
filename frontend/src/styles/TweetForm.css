@@ -1,0 +1,17 @@
+.form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.form-container > textarea {
+  height: 120px;
+}
+
+.tweet-length {
+  color: #999;
+  font-size: 13px;
+  padding-top: 5px;
+  align-self: flex-end;
+}
+

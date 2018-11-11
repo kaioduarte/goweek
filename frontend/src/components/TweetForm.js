@@ -1,13 +1,20 @@
 import React from 'react'
 
-export default ({ newTwitter, handleInputChange, handleNewTweet }) => (
+import '../styles/TweetForm.css'
+
+export default ({ maxLength, newTweet, handleInputChange, handleNewTweet }) => (
   <form>
-    <textarea
-      style={{ height: 120 }}
-      value={newTwitter}
-      onChange={handleInputChange}
-      onKeyDown={handleNewTweet}
-      placeholder='O que está acontecendo?'
-    />
+    <div className='form-container'>
+      <textarea
+        value={newTweet}
+        maxLength={maxLength}
+        onChange={handleInputChange}
+        onKeyDown={handleNewTweet}
+        placeholder='O que está acontecendo?'
+      />
+      <p className='tweet-length'>
+        {`${newTweet.length}/${maxLength}`}
+      </p>
+    </div>
   </form>
 )

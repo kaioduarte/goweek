@@ -12,10 +12,11 @@ export default class Timeline extends Component {
   constructor (props) {
     super(props)
 
+    this.maxLength = 280
+
     this.state = {
       tweets: [],
-      newTwitter: '',
-      reachedLimit: false
+      newTweet: ''
     }
 
     this.subscribeToEvents = () => {
@@ -36,20 +37,16 @@ export default class Timeline extends Component {
 
     this.handleNewTweet = async (e) => {
       if (e.keyCode === 13) {
-        const content = this.state.newTwitter
+        const content = this.state.newTweet
         const author = localStorage.getItem('@GoTwitter:username')
 
         await api.post('tweets', { content, author })
-        this.setState({ newTwitter: '' })
+        this.setState({ newTweet: '' })
       }
     }
 
     this.handleInputChange = (e) => {
-      const { value } = e.target
-
-      if (value.length > 280) return
-
-      this.setState({ newTwitter: e.target.value })
+      this.setState({ newTweet: e.target.value })
     }
 
     this.handleLike = (id) => async () => {
@@ -79,7 +76,8 @@ export default class Timeline extends Component {
         />
 
         <TweetForm
-          newTwitter={this.state.newTwitter}
+          maxLength={this.maxLength}
+          newTweet={this.state.newTweet}
           handleNewTweet={this.handleNewTweet}
           handleInputChange={this.handleInputChange}
         />
